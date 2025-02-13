@@ -39,7 +39,7 @@ class DataSource @Inject constructor() {
                 foto = R.drawable.pudim,
                 nome = "Pudim de Leite",
                 preco = "16.00"
-            ),
+            )
         )
     }
 }

@@ -7,7 +7,7 @@ import javax.inject.Inject
 class DataSource @Inject constructor() {
 
     fun getProdutos(
-        response: (MutableList<Produto>)
+        response: (MutableList<Produto>) -> Unit
     ){
         val listaProdutos = mutableListOf(
             Produto(
@@ -41,5 +41,7 @@ class DataSource @Inject constructor() {
                 preco = "16.00"
             )
         )
+
+        response(listaProdutos)
     }
 }

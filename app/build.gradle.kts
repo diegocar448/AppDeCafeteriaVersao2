@@ -64,6 +64,7 @@ dependencies {
 
     //Hilt
     implementation(libs.androidx.hilt.navigation.fragment)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //DaggerHiltAndroid
     implementation(libs.hilt.android)

@@ -92,7 +92,10 @@ fun ProdutoItem(
                             shape = RoundedCornerShape(30.dp)
                         ).padding(5.dp).size(20.dp) // Define o tamanho do componente Text como 20.dp
                         .clickable {
-
+                            if (quantidadeProduto < 50){
+                                quantidadeProduto += 1
+                                novoPreco = precoUnitario * quantidadeProduto
+                            }
                         },
                     textAlign = TextAlign.Center
                 )
@@ -112,7 +115,12 @@ fun ProdutoItem(
                             shape = RoundedCornerShape(30.dp)
                         ).padding(5.dp).size(20.dp) // Define o tamanho do componente Text como 20.dp
                         .clickable {
-
+                            if (quantidadeProduto < 50){
+                                if(quantidadeProduto > 1) {
+                                    quantidadeProduto -= 1
+                                    novoPreco = novoPreco - precoUnitario
+                                }
+                            }
                         },
                     textAlign = TextAlign.Center
                 )

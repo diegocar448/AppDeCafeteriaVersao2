@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                 composable(
                     route = "Carrinho"
                 ){
-                    Carrinho()
+                    Carrinho(navController = navController, carrinhoViewModel = carrinhoViewModel)
                 }
 
             }

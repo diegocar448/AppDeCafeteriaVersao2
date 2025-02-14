@@ -11,6 +11,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -25,6 +28,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,6 +39,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.diego.appdecafeteriaversao2.itemlista.ProdutoItem
+import com.diego.appdecafeteriaversao2.model.Produto
 import com.diego.appdecafeteriaversao2.ui.theme.BLACK80
 import com.diego.appdecafeteriaversao2.ui.theme.MyTheme
 import com.diego.appdecafeteriaversao2.ui.theme.WHITE
@@ -47,7 +53,15 @@ fun Home(
     carrinhoViewModel: CarrinhoViewModel
 ){
 
+    var listaProdutos by remember { mutableStateOf(mutableListOf<Produto>()) }
     var pesquisar by remember { mutableStateOf("") }
+
+    //pegar os dados ao carregar view
+    LaunchedEffect(Unit) {
+        carrinhoViewModel.getProdutos { produtos ->
+            listaProdutos = produtos
+        }
+    }
 
     MyTheme(
         theme = "1"
@@ -103,7 +117,18 @@ fun Home(
             Column(
                 modifier = Modifier.fillMaxSize().background(Color.LightGray).padding(paddingValues)
             ){
-
+                LazyVerticalGrid(
+                    //colunas por linha
+                    columns = GridCells.Fixed(2),
+                    modifier = Modifier.padding(0.dp, 20.dp, 0.dp, 0.dp)
+                ) {
+                    itemsIndexed(listaProdutos){_, produto ->
+                        ProdutoItem(
+                            produto = produto,
+                            carrinhoViewModel = carrinhoViewModel
+                        )
+                    }
+                }
             }
         }
     }

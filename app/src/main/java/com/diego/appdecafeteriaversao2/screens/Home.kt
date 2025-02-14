@@ -54,12 +54,24 @@ fun Home(
 ){
 
     var listaProdutos by remember { mutableStateOf(mutableListOf<Produto>()) }
+    var produtosPesquisados by remember { mutableStateOf(mutableListOf<Produto>()) }
     var pesquisar by remember { mutableStateOf("") }
+
+    //filtrando campo de pesquisa
+    listaProdutos = if (pesquisar.isNotEmpty()){
+        produtosPesquisados.filter { produto ->
+            //ignoreCase ignora diferença entre maiuscula e minuscula
+            produto.nome!!.contains(pesquisar, ignoreCase = true)
+        }.toMutableList()
+    }else{
+        produtosPesquisados
+    }
 
     //pegar os dados ao carregar view
     LaunchedEffect(Unit) {
         carrinhoViewModel.getProdutos { produtos ->
             listaProdutos = produtos
+            produtosPesquisados = produtos
         }
     }
 

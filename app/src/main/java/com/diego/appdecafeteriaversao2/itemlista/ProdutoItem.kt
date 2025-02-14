@@ -1,5 +1,6 @@
 package com.diego.appdecafeteriaversao2.itemlista
 
+import android.icu.text.DecimalFormat
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,6 +28,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -40,6 +42,8 @@ fun ProdutoItem(
     produto: Produto,
     carrinhoViewModel: CarrinhoViewModel
 ){
+    val precoUnitario = produto.preco!!.toDouble()
+    var novoPreco by remember { mutableDoubleStateOf(precoUnitario) }
     var quantidadeProduto by remember { mutableIntStateOf(1) }
 
 
@@ -115,7 +119,7 @@ fun ProdutoItem(
             }
 
             Text(
-                text = "${produto.preco}",
+                text = DecimalFormat.getCurrencyInstance().format(novoPreco),
                 color = MaterialTheme.colorScheme.onPrimary,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,

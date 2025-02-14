@@ -36,13 +36,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.diego.appdecafeteriaversao2.itemlista.ProdutoItem
 import com.diego.appdecafeteriaversao2.model.Produto
 import com.diego.appdecafeteriaversao2.ui.theme.BLACK80
 import com.diego.appdecafeteriaversao2.ui.theme.MyTheme
+import com.diego.appdecafeteriaversao2.ui.theme.RED
 import com.diego.appdecafeteriaversao2.ui.theme.WHITE
 import com.diego.appdecafeteriaversao2.viewmodel.CarrinhoViewModel
 
@@ -121,6 +125,21 @@ fun Home(
                                 tint = MaterialTheme.colorScheme.secondary,
                                 modifier = Modifier.size(30.dp)
                             )
+
+                            if(carrinhoViewModel.totalItens.intValue > 0){
+                                Text(
+                                    text = carrinhoViewModel.totalItens.intValue.toString(),
+                                    color = MaterialTheme.colorScheme.secondary,
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.background(
+                                        RED,
+                                        shape = RoundedCornerShape(10.dp)
+                                    ).size(20.dp),
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+
                         }
                     }
                 )

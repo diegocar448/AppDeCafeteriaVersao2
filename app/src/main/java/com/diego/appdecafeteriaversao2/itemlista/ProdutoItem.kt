@@ -34,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import com.diego.appdecafeteriaversao2.model.Carrinho
 import com.diego.appdecafeteriaversao2.model.Produto
 import com.diego.appdecafeteriaversao2.viewmodel.CarrinhoViewModel
 
@@ -136,7 +137,13 @@ fun ProdutoItem(
 
             Button(
                 onClick = {
-
+                    carrinhoViewModel.adicionarProdutoCarrinho(
+                        produto = Carrinho(
+                            nome = produto.nome.toString(),
+                            preco = novoPreco.toString(),
+                            quantidade = quantidadeProduto.toString()
+                        )
+                    )
                 },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.tertiary,

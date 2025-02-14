@@ -2,6 +2,7 @@ package com.diego.appdecafeteriaversao2.screens
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -123,7 +124,9 @@ fun Home(
                                 imageVector = Icons.Rounded.ShoppingCart,
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.secondary,
-                                modifier = Modifier.size(30.dp)
+                                modifier = Modifier.size(30.dp).clickable {
+                                    navController.navigate(route = "Carrinho")
+                                }
                             )
 
                             if(carrinhoViewModel.totalItens.intValue > 0){

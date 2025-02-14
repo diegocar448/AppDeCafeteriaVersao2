@@ -32,6 +32,11 @@ class CarrinhoViewModel @Inject constructor( private val carrinhoRepositorio: Ca
         totalItens.intValue += 1
     }
 
+    //calcular valor total do carrinho
+    fun calcularTotal(): Double{
+        return produtosCarrinho.sumOf { it.preco.toDouble() }
+    }
+
 
 
 

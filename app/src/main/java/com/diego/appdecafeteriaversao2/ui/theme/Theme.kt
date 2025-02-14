@@ -11,12 +11,14 @@ import androidx.compose.ui.platform.LocalContext
 
 private val TemaClaro = lightColorScheme(
     primary = BROWN400,
+    onPrimary = BLACK80,
     secondary = WHITE,
     tertiary = BROWN500
 )
 
 private val TemaEscuro = darkColorScheme(
     primary = BROWN400,
+    onPrimary = BLACK80,
     secondary = WHITE,
     tertiary = BROWN500
 )

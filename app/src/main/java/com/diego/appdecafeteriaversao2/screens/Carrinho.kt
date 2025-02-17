@@ -161,7 +161,7 @@ fun Carrinho(
                                     contentDescription = null,
                                     tint = RED,
                                     modifier = Modifier.size(50.dp).padding(10.dp).clickable {
-
+                                        carrinhoViewModel.removerProdutoCarrinho(produto)
                                     }
                                 )
                             }

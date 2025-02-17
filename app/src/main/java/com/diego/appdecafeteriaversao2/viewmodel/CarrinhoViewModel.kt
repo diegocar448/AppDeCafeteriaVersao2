@@ -2,6 +2,7 @@ package com.diego.appdecafeteriaversao2.viewmodel
 
 import androidx.collection.mutableIntSetOf
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diego.appdecafeteriaversao2.model.Carrinho
@@ -14,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class CarrinhoViewModel @Inject constructor( private val carrinhoRepositorio: CarrinhoRepositorio ): ViewModel() {
 
-    var produtosCarrinho = mutableListOf<Carrinho>()
+
+    var produtosCarrinho = mutableStateListOf<Carrinho>()
     var totalItens = mutableIntStateOf(0)
 
     //listar produtos
@@ -30,6 +32,13 @@ class CarrinhoViewModel @Inject constructor( private val carrinhoRepositorio: Ca
     fun adicionarProdutoCarrinho(produto: Carrinho){
         produtosCarrinho.add(produto)
         totalItens.intValue += 1
+    }
+
+    //delete
+    fun removerProdutoCarrinho(produto: Carrinho){
+        produtosCarrinho.remove(produto)
+        //atualizar
+        totalItens.intValue -= 1
     }
 
     //calcular valor total do carrinho

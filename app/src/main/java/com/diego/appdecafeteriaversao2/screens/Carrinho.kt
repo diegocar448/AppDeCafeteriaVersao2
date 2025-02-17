@@ -61,7 +61,7 @@ fun Carrinho(
                     ) {
                         Button(
                             onClick = {
-
+                                navController.navigate("Pagamento")
                             },
                             modifier = Modifier.fillMaxWidth().height(50.dp).padding(50.dp, 0.dp),
                             colors = ButtonDefaults.buttonColors(

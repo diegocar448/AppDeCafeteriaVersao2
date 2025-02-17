@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.diego.appdecafeteriaversao2.screens.Carrinho
 import com.diego.appdecafeteriaversao2.screens.Home
+import com.diego.appdecafeteriaversao2.screens.Pagamento
 import com.diego.appdecafeteriaversao2.viewmodel.CarrinhoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,6 +41,11 @@ class MainActivity : ComponentActivity() {
                     route = "Carrinho"
                 ){
                     Carrinho(navController = navController, carrinhoViewModel = carrinhoViewModel)
+                }
+                composable(
+                    route = "Pagamento"
+                ){
+                    Pagamento(carrinhoViewModel = carrinhoViewModel)
                 }
 
             }
